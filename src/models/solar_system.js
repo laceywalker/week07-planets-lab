@@ -7,28 +7,23 @@ const SolarSystem = function(planets) {
 SolarSystem.prototype.bindEvents = function () {
   PubSub.subscribe('HyperlinkView:click-submitted', (event) => {
     const inputClick = event.detail;
-    console.log('payload received in SolarSystem:', inputClick);
+    // console.log('payload received in SolarSystem:', inputClick);
+    const result = this.getPlanet(inputClick);
+    PubSub.publish('SolarSystem:result-calculated', result);
   });
 };
 
 SolarSystem.prototype.getPlanet = function (event) {
+  let temporaryVariable = ''
   this.planets.forEach((planet) => {
-    if (event.detail === planet.name) {
-      const planetObject = document.createElement('p');
-      planetObject.textContent = planet;
-      this.element.appendChild(planetObject);
+    // debugger
+    if (planet.name === event) {
+      temporaryVariable = planet;
     }
   })
+  return temporaryVariable;
 };
 
 
+
 module.exports = SolarSystem;
-
-
-// WordCounter.prototype.bindEvents = function () {
-//   PubSub.subscribe('FormView:text-submitted', (event) => {
-//     const inputtedText = event.detail;
-//     const result = this.countWords(inputtedText);
-//     PubSub.publish('WordCounter:result-calculated', result); // MODIFIED
-//   });
-// };
