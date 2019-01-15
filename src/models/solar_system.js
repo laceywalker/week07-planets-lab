@@ -11,15 +11,15 @@ SolarSystem.prototype.bindEvents = function () {
   });
 };
 
-// SolarSytem.prototype.getPlanet = function (event) {
-//   this.planets.forEach(planet) => {
-//     if (event.detail === planet.name) {
-//       const planetObject = document.createElement('p');
-//       planetObject.textContent = planet;
-//       this.element.appendChild(planetObject);
-//     }
-//   }
-// };
+SolarSystem.prototype.getPlanet = function (event) {
+  this.planets.forEach((planet) => {
+    if (event.detail === planet.name) {
+      const planetObject = document.createElement('p');
+      planetObject.textContent = planet;
+      this.element.appendChild(planetObject);
+    }
+  })
+};
 
 
 module.exports = SolarSystem;
